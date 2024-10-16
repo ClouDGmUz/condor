@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
 import { useTheme } from '../hooks/useTheme';
 import { useTranslation } from 'react-i18next';
 import { useState } from 'react';
@@ -23,7 +22,9 @@ const Navbar = () => {
         <div className="flex justify-between h-16">
           <div className="flex-shrink-0 flex items-center">
             <Link href="/">
-              <Image src="/logo.png" alt="Condor Logo" width={120} height={40} />
+              <svg className="h-8 w-auto" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <use href="/logo.svg#logo" />
+              </svg>
             </Link>
           </div>
           <div className="flex items-center">

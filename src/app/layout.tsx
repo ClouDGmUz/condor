@@ -20,6 +20,13 @@ const geistMono = localFont({
 export const metadata: Metadata = {
   title: "Condor - Ishonchli Hamkoringiz",
   description: "Condor biznesingiz ehtiyojlari uchun innovatsion yechimlar taqdim etadi.",
+  icons: [
+    {
+      rel: 'icon',
+      type: 'image/x-icon',
+      url: '/favicon.ico',
+    },
+  ],
 };
 
 export default function RootLayout({
