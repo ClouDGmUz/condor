@@ -6,7 +6,6 @@ import { initReactI18next } from 'react-i18next';
 import i18nConfig from '../i18n';
 import { useEffect, useState } from 'react';
 
-// Initialize i18next on the client side
 i18next.use(initReactI18next).init(i18nConfig);
 
 export function I18nProvider({ children }: { children: React.ReactNode }) {
@@ -14,6 +13,12 @@ export function I18nProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     setIsClient(true);
+    const storedLanguage = localStorage.getItem('language');
+    if (storedLanguage) {
+      i18next.changeLanguage(storedLanguage);
+    } else {
+      i18next.changeLanguage('uz'); // Set Uzbek as default if no language is stored
+    }
   }, []);
 
   if (!isClient) {

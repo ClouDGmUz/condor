@@ -13,6 +13,7 @@ const Navbar = () => {
 
   const changeLanguage = (lng: string) => {
     i18n.changeLanguage(lng);
+    localStorage.setItem('language', lng);
     setIsOpen(false);
   };
 
@@ -42,7 +43,7 @@ const Navbar = () => {
                 onClick={() => setIsOpen(!isOpen)}
                 className="flex items-center px-3 py-2 rounded-md text-sm font-medium bg-blue-500 text-white hover:bg-blue-600"
               >
-                {i18n.language === 'es' ? '🇪🇸' : '🇺🇸'}
+                {i18n.language === 'uz' ? '🇺🇿' : i18n.language === 'en' ? '🇺🇸' : i18n.language === 'ru' ? '🇷🇺' : '🇹🇷'}
                 <svg className="ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                   <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
                 </svg>
@@ -51,6 +52,13 @@ const Navbar = () => {
                 <div className="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white dark:bg-gray-700 ring-1 ring-black ring-opacity-5">
                   <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
                     <button
+                      onClick={() => changeLanguage('uz')}
+                      className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600 w-full text-left"
+                      role="menuitem"
+                    >
+                      🇺🇿 O'zbek
+                    </button>
+                    <button
                       onClick={() => changeLanguage('en')}
                       className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600 w-full text-left"
                       role="menuitem"
@@ -58,11 +66,18 @@ const Navbar = () => {
                       🇺🇸 English
                     </button>
                     <button
-                      onClick={() => changeLanguage('es')}
+                      onClick={() => changeLanguage('ru')}
                       className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600 w-full text-left"
                       role="menuitem"
                     >
-                      🇪🇸 Español
+                      🇷🇺 Русский
+                    </button>
+                    <button
+                      onClick={() => changeLanguage('tr')}
+                      className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-600 w-full text-left"
+                      role="menuitem"
+                    >
+                      🇹🇷 Türkçe
                     </button>
                   </div>
                 </div>

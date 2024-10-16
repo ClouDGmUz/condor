@@ -18,8 +18,8 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Condor - Your Trusted Partner",
-  description: "Condor provides innovative solutions for your business needs.",
+  title: "Condor - Ishonchli Hamkoringiz",
+  description: "Condor biznesingiz ehtiyojlari uchun innovatsion yechimlar taqdim etadi.",
 };
 
 export default function RootLayout({
@@ -28,7 +28,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="uz">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}
       >
