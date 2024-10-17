@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import dynamic from 'next/dynamic';
 import { I18nProvider } from '../components/I18nProvider';
+import TestModeBar from '../components/TestModeBar';
 
 const Navbar = dynamic(() => import('../components/Navbar'), { ssr: false });
 
@@ -40,6 +41,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}
       >
         <I18nProvider>
+          <TestModeBar />
           <Navbar />
           <div className="pt-16">
             {children}
