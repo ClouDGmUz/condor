@@ -1,0 +1,20 @@
+[
+  {
+    "id": "antifreeze",
+    "nameKey": "antifreeze",
+    "descriptionKey": "antifreezeDesc",
+    "image": "/images/antifreeze.jpg"
+  },
+  {
+    "id": "motorOil",
+    "nameKey": "motorOil",
+    "descriptionKey": "motorOilDesc",
+    "image": "/images/motor-oil.jpg"
+  },
+  {
+    "id": "transmissionFluid",
+    "nameKey": "transmissionFluid",
+    "descriptionKey": "transmissionFluidDesc",
+    "image": "/images/transmission-fluid.jpg"
+  }
+]

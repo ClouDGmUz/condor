@@ -27,6 +27,7 @@ const i18nConfig = {
         motorOilDesc: 'Yuqori dvigatel samaradorligi va uzoq umr',
         transmissionFluid: 'Transmissiya suyuqligi',
         transmissionFluidDesc: 'Yumshoq uzatmalar almashinuvi va optimal transmissiya sog\'lig\'i',
+        ourProducts:"Bizning mahsulotlar",
       }
     },
     en: {
@@ -55,6 +56,7 @@ const i18nConfig = {
         motorOil: 'Motor Oil',
         motorOilDesc: 'Superior engine performance and longevity',
         transmissionFluid: 'Transmission Fluid',
+        ourProducts:"Our Products",
         transmissionFluidDesc: 'Smooth gear shifts and optimal transmission health',
       }
     },
@@ -85,6 +87,7 @@ const i18nConfig = {
         motorOilDesc: 'Превосходная производительность и долговечность двигателя',
         transmissionFluid: 'Трансмиссионная жидкость',
         transmissionFluidDesc: 'Плавное переключение передач и оптимальное состояние трансмиссии',
+        ourProducts:"Наши продукты",
       }
     },
     tr: {
@@ -114,6 +117,7 @@ const i18nConfig = {
         motorOilDesc: 'Üstün motor performansı ve uzun ömür',
         transmissionFluid: 'Şanzıman Sıvısı',
         transmissionFluidDesc: 'Pürüzsüz vites geçişleri ve optimal şanzıman sağlığı',
+        ourProducts:"Biz Ürünleri",
       }
     }
   },

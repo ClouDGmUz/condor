@@ -3,9 +3,25 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useTranslation } from 'react-i18next';
+import { useState, useEffect } from 'react';
+
+interface Product {
+  id: string;
+  nameKey: string;
+  descriptionKey: string;
+  image: string;
+}
 
 export default function Home() {
   const { t } = useTranslation();
+  const [products, setProducts] = useState<Product[]>([]);
+
+  useEffect(() => {
+    fetch('/products.json')
+      .then(response => response.json())
+      .then(data => setProducts(data))
+      .catch(error => console.error('Error loading products:', error));
+  }, []);
 
   return (
     <div className="min-h-screen">
@@ -30,29 +46,21 @@ export default function Home() {
       {/* Products Section */}
       <section className="py-16 bg-white dark:bg-gray-900">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12 text-blue-800 dark:text-blue-300">{t('whyChooseCondor')}</h2>
+          <h2 className="text-3xl font-bold text-center mb-12 text-blue-800 dark:text-blue-300">{t('ourProducts')}</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center">
-              <div className="bg-blue-100 dark:bg-blue-800 rounded-full p-4 inline-block mb-4">
-                <svg className="w-8 h-8 text-blue-600 dark:text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" /></svg>
+            {products.map((product) => (
+              <div key={product.id} className="text-center">
+                <Image 
+                  src={product.image} 
+                  alt={t(product.nameKey)} 
+                  width={200} 
+                  height={200} 
+                  className="w-32 h-32 mx-auto mb-4 rounded-full object-cover"
+                />
+                <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-gray-200">{t(product.nameKey)}</h3>
+                <p className="text-gray-600 dark:text-gray-400">{t(product.descriptionKey)}</p>
               </div>
-              <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-gray-200">{t('antifreeze')}</h3>
-              <p className="text-gray-600 dark:text-gray-400">{t('antifreezeDesc')}</p>
-            </div>
-            <div className="text-center">
-              <div className="bg-red-100 dark:bg-red-800 rounded-full p-4 inline-block mb-4">
-                <svg className="w-8 h-8 text-red-600 dark:text-red-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
-              </div>
-              <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-gray-200">{t('motorOil')}</h3>
-              <p className="text-gray-600 dark:text-gray-400">{t('motorOilDesc')}</p>
-            </div>
-            <div className="text-center">
-              <div className="bg-green-100 dark:bg-green-800 rounded-full p-4 inline-block mb-4">
-                <svg className="w-8 h-8 text-green-600 dark:text-green-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-              </div>
-              <h3 className="text-xl font-semibold mb-2 text-gray-800 dark:text-gray-200">{t('transmissionFluid')}</h3>
-              <p className="text-gray-600 dark:text-gray-400">{t('transmissionFluidDesc')}</p>
-            </div>
+            ))}
           </div>
         </div>
       </section>
@@ -91,4 +99,3 @@ export default function Home() {
     </div>
   );
 }
-
