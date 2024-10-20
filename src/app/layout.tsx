@@ -3,7 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import dynamic from 'next/dynamic';
 import { I18nProvider } from '../components/I18nProvider';
-import TestModeBar from '../components/TestModeBar';
+import ThemeCustomizer from '../components/ThemeCustomizer';
 
 const Navbar = dynamic(() => import('../components/Navbar'), { ssr: false });
 
@@ -19,15 +19,8 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "Condor - Ishonchli Hamkoringiz",
-  description: "Condor biznesingiz ehtiyojlari uchun innovatsion yechimlar taqdim etadi.",
-  icons: [
-    {
-      rel: 'icon',
-      type: 'image/x-icon',
-      url: '/favicon.ico',
-    },
-  ],
+  title: "Condor - Your Trusted Partner",
+  description: "Condor provides innovative solutions for your business needs.",
 };
 
 export default function RootLayout({
@@ -38,14 +31,14 @@ export default function RootLayout({
   return (
     <html lang="uz">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-text`}
       >
         <I18nProvider>
-          <TestModeBar />
           <Navbar />
           <div className="pt-16">
             {children}
           </div>
+          <ThemeCustomizer />
         </I18nProvider>
       </body>
     </html>

@@ -2,16 +2,18 @@
 
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import Image from 'next/image';
 
 const ContactPage: React.FC = () => {
   const { t } = useTranslation();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    subject: '',
     message: '',
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prevState => ({
       ...prevState,
@@ -24,7 +26,7 @@ const ContactPage: React.FC = () => {
     // Here you would typically send the form data to your server
     console.log('Form submitted:', formData);
     // Reset form after submission
-    setFormData({ name: '', email: '', message: '' });
+    setFormData({ name: '', email: '', subject: '', message: '' });
     alert(t('messageSent'));
   };
 
@@ -39,17 +41,27 @@ const ContactPage: React.FC = () => {
           
           <div className="mb-4">
             <h3 className="font-semibold">{t('address')}</h3>
-            <p>123 Condor Street, Tashkent, Uzbekistan</p>
+            <p>{t('companyAddress')}</p>
           </div>
           
           <div className="mb-4">
             <h3 className="font-semibold">{t('phone')}</h3>
-            <p>+998 12 345 6789</p>
+            <p>{t('companyPhone')}</p>
           </div>
           
           <div className="mb-4">
             <h3 className="font-semibold">{t('email')}</h3>
-            <p>info@condor.uz</p>
+            <p>{t('companyEmail')}</p>
+          </div>
+
+          <div className="mt-8">
+            <Image
+              src="/images/map.png"
+              alt={t('mapAlt')}
+              width={400}
+              height={300}
+              className="rounded-lg shadow-md"
+            />
           </div>
         </div>
         
@@ -81,6 +93,23 @@ const ContactPage: React.FC = () => {
                 className="w-full px-3 py-2 border rounded-md dark:bg-gray-700"
               />
             </div>
+
+            <div className="mb-4">
+              <label htmlFor="subject" className="block mb-2">{t('subject')}</label>
+              <select
+                id="subject"
+                name="subject"
+                value={formData.subject}
+                onChange={handleChange}
+                required
+                className="w-full px-3 py-2 border rounded-md dark:bg-gray-700"
+              >
+                <option value="">{t('selectSubject')}</option>
+                <option value="general">{t('generalInquiry')}</option>
+                <option value="support">{t('technicalSupport')}</option>
+                <option value="sales">{t('sales')}</option>
+              </select>
+            </div>
             
             <div className="mb-4">
               <label htmlFor="message" className="block mb-2">{t('message')}</label>
@@ -95,7 +124,7 @@ const ContactPage: React.FC = () => {
               ></textarea>
             </div>
             
-            <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600">
+            <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300">
               {t('send')}
             </button>
           </form>

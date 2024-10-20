@@ -6,15 +6,37 @@ const config: Config = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
-  darkMode: 'class', // Add this line
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        primary: 'var(--color-primary)',
+        secondary: 'var(--color-secondary)',
+        background: 'var(--color-background)',
+        text: 'var(--color-text)',
+        'text-muted': 'var(--color-text-muted)',
+        accent: 'var(--color-accent)',
+      },
+      backgroundColor: {
+        primary: 'var(--color-primary)',
+        secondary: 'var(--color-secondary)',
+        background: 'var(--color-background)',
+      },
+      textColor: {
+        primary: 'var(--color-primary)',
+        secondary: 'var(--color-secondary)',
+        text: 'var(--color-text)',
+        'text-muted': 'var(--color-text-muted)',
+        accent: 'var(--color-accent)',
+      },
+      borderColor: {
+        primary: 'var(--color-primary)',
+        secondary: 'var(--color-secondary)',
+        accent: 'var(--color-accent)',
       },
     },
   },
   plugins: [],
 };
+
 export default config;
