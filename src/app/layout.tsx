@@ -3,9 +3,10 @@ import localFont from "next/font/local";
 import "./globals.css";
 import dynamic from 'next/dynamic';
 import { I18nProvider } from '../components/I18nProvider';
-import ThemeCustomizer from '../components/ThemeCustomizer';
 
 const Navbar = dynamic(() => import('../components/Navbar'), { ssr: false });
+const ThemeCustomizer = dynamic(() => import('../components/ThemeCustomizer'), { ssr: false });
+const Footer = dynamic(() => import('../components/Footer'), { ssr: false });
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -31,13 +32,14 @@ export default function RootLayout({
   return (
     <html lang="uz">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-text`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-text flex flex-col min-h-screen`}
       >
         <I18nProvider>
           <Navbar />
-          <div className="pt-16">
+          <main className="flex-grow">
             {children}
-          </div>
+          </main>
+          <Footer />
           <ThemeCustomizer />
         </I18nProvider>
       </body>
