@@ -130,6 +130,14 @@
   "stat3Number": "50+",
   "stat3Label": "Product Variants",
   "stat4Number": "24/7",
-  "stat4Label": "Support Available"
+  "stat4Label": "Support Available",
 
+  "categorymotor-oilTitle": "Motor Oil",
+  "categorymotor-oilDesc": "High-performance motor oils for all types of engines",
+  "categoryantifreezeTitle": "Antifreeze",
+  "categoryantifreezeDesc": "Premium coolants for optimal temperature control",
+  "categorydotTitle": "ABC Brake Fluid",
+  "categorydotDesc": "High-quality brake fluids for maximum safety",
+  "categorymoreTitle": "More Products",
+  "categorymoreDesc": "Discover our full range of automotive fluids"
 }

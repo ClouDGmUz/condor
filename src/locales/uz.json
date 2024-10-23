@@ -130,5 +130,13 @@
   "stat3Number": "50+",
   "stat3Label": "Mahsulot turlari",
   "stat4Number": "24/7",
-  "stat4Label": "Qo'llab-quvvatlash"
-}
+  "stat4Label": "Qo'llab-quvvatlash",
+
+  "categorymotor-oilTitle": "Motor moyi",
+  "categorymotor-oilDesc": "Barcha turdagi dvigatellar uchun yuqori samarali motor moylari",
+  "categoryantifreezeTitle": "Antifreeze",
+  "categoryantifreezeDesc": "Optimal harorat nazorati uchun premium sovutish suyuqliklari",
+  "categorydotTitle": "ABC Tormoz suyuqligi",
+  "categorydotDesc": "Maksimal xavfsizlik uchun yuqori sifatli tormoz suyuqliklari",
+  "categorymoreTitle": "Boshqa mahsulotlar"
+ }

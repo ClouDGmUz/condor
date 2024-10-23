@@ -6,6 +6,29 @@ import Link from 'next/link'
 export default function Home() {
   const { t } = useTranslation()
 
+  const categories = [
+    {
+      id: 'motor-oil',
+      icon: '🛢️',
+      image: '/images/motor-oil.jpg',
+    },
+    {
+      id: 'antifreeze',
+      icon: '❄️',
+      image: '/images/antifreeze.jpg',
+    },
+    {
+      id: 'dot',
+      icon: '🚗',
+      image: '/images/Dot.jpg',
+    },
+    {
+      id: 'more',
+      icon: '➕',
+      image: '/images/more-products.jpg',
+    },
+  ]
+
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
@@ -48,25 +71,20 @@ export default function Home() {
       <section className="py-16">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12">{t('ourProducts')}</h2>
-          <div className="grid md:grid-cols-4 gap-6">
-            {['oil', 'antifreeze', 'dot', 'water'].map((category) => (
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {categories.map((category) => (
               <Link
-                key={category}
-                href={`/products?category=${category}`}
+                key={category.id}
+                href={category.id === 'more' ? '/products' : `/products?category=${category.id}`}
                 className="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow"
               >
-                <div className="aspect-w-1 aspect-h-1">
-                  <Image
-                    src={`/images/${category}-category.jpg`}
-                    alt={t(category)}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end">
-                  <div className="p-4 text-white">
-                    <h3 className="text-xl font-semibold mb-2">{t(category)}</h3>
-                    <p className="text-sm">{t(`${category}CategoryDesc`)}</p>
+                <div className="aspect-w-1 aspect-h-1 bg-gray-100 dark:bg-gray-800">
+                  <div className="flex flex-col items-center justify-center p-6 text-center">
+                    <span className="text-4xl mb-4">{category.icon}</span>
+                    <h3 className="text-xl font-semibold mb-2">{t(`category${category.id}Title`)}</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-300">
+                      {t(`category${category.id}Desc`)}
+                    </p>
                   </div>
                 </div>
               </Link>
