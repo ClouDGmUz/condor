@@ -1,42 +1,27 @@
-import type { Config } from "tailwindcss";
-
-const config: Config = {
+/** @type {import('tailwindcss').Config} */
+module.exports = {
   content: [
-    "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
-  darkMode: 'class',
   theme: {
     extend: {
       colors: {
-        primary: 'var(--color-primary)',
-        secondary: 'var(--color-secondary)',
-        background: 'var(--color-background)',
-        text: 'var(--color-text)',
-        'text-muted': 'var(--color-text-muted)',
-        accent: 'var(--color-accent)',
+        primary: '#1a73e8',
+        secondary: '#34a853',
+        accent: '#fbbc04',
+        background: {
+          light: '#f8f9fa',
+          dark: '#202124',
+        },
       },
-      backgroundColor: {
-        primary: 'var(--color-primary)',
-        secondary: 'var(--color-secondary)',
-        background: 'var(--color-background)',
-      },
-      textColor: {
-        primary: 'var(--color-primary)',
-        secondary: 'var(--color-secondary)',
-        text: 'var(--color-text)',
-        'text-muted': 'var(--color-text-muted)',
-        accent: 'var(--color-accent)',
-      },
-      borderColor: {
-        primary: 'var(--color-primary)',
-        secondary: 'var(--color-secondary)',
-        accent: 'var(--color-accent)',
+      fontFamily: {
+        sans: ['Geist Sans', 'sans-serif'],
+        mono: ['Geist Mono', 'monospace'],
       },
     },
   },
   plugins: [],
-};
-
-export default config;
+  darkMode: 'class',
+}

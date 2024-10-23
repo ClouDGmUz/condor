@@ -1,137 +1,145 @@
-'use client';
+'use client'
+import { useTranslation } from 'react-i18next'
+import { useState } from 'react'
 
-import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import Image from 'next/image';
-
-const ContactPage: React.FC = () => {
-  const { t } = useTranslation();
+export default function Contact() {
+  const { t } = useTranslation()
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     subject: '',
-    message: '',
-  });
+    message: ''
+  })
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setFormData(prevState => ({
-      ...prevState,
-      [name]: value,
-    }));
-  };
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault()
+    // Handle form submission here
+    console.log('Form submitted:', formData)
+  }
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    // Here you would typically send the form data to your server
-    console.log('Form submitted:', formData);
-    // Reset form after submission
-    setFormData({ name: '', email: '', subject: '', message: '' });
-    alert(t('messageSent'));
-  };
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value
+    })
+  }
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold mb-8">{t('contactUs')}</h1>
-      
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div>
-          <h2 className="text-2xl font-semibold mb-4">{t('getInTouch')}</h2>
-          <p className="mb-4">{t('contactDescription')}</p>
-          
-          <div className="mb-4">
-            <h3 className="font-semibold">{t('address')}</h3>
-            <p>{t('companyAddress')}</p>
-          </div>
-          
-          <div className="mb-4">
-            <h3 className="font-semibold">{t('phone')}</h3>
-            <p>{t('companyPhone')}</p>
-          </div>
-          
-          <div className="mb-4">
-            <h3 className="font-semibold">{t('email')}</h3>
-            <p>{t('companyEmail')}</p>
-          </div>
+      <h1 className="text-4xl font-bold mb-8">{t('contact')}</h1>
 
-          <div className="mt-8">
-            <Image
-              src="/images/map.png"
-              alt={t('mapAlt')}
-              width={400}
-              height={300}
-              className="rounded-lg shadow-md"
-            />
+      <div className="grid md:grid-cols-2 gap-12">
+        {/* Contact Information */}
+        <div>
+          <h2 className="text-2xl font-semibold mb-6">{t('contactInfo')}</h2>
+          
+          <div className="space-y-6">
+            <div>
+              <h3 className="text-lg font-semibold mb-2">{t('address')}</h3>
+              <p className="text-gray-600 dark:text-gray-300">
+                123 Business Street,<br />
+                Tashkent, Uzbekistan
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-semibold mb-2">{t('phoneNumbers')}</h3>
+              <p className="text-gray-600 dark:text-gray-300">
+                +998 71 123 45 67<br />
+                +998 90 123 45 67
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-semibold mb-2">{t('email')}</h3>
+              <p className="text-gray-600 dark:text-gray-300">
+                info@condor.uz
+              </p>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-semibold mb-2">{t('workingHours')}</h3>
+              <p className="text-gray-600 dark:text-gray-300">
+                {t('workingHoursDesc')}
+              </p>
+            </div>
           </div>
         </div>
-        
+
+        {/* Contact Form */}
         <div>
-          <h2 className="text-2xl font-semibold mb-4">{t('sendMessage')}</h2>
-          <form onSubmit={handleSubmit}>
-            <div className="mb-4">
-              <label htmlFor="name" className="block mb-2">{t('name')}</label>
+          <h2 className="text-2xl font-semibold mb-6">{t('sendMessage')}</h2>
+          
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <div>
+              <label htmlFor="name" className="block text-sm font-medium mb-2">
+                {t('name')}
+              </label>
               <input
                 type="text"
                 id="name"
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
+                className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary dark:bg-gray-700 dark:border-gray-600"
                 required
-                className="w-full px-3 py-2 border rounded-md dark:bg-gray-700"
               />
             </div>
-            
-            <div className="mb-4">
-              <label htmlFor="email" className="block mb-2">{t('email')}</label>
+
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium mb-2">
+                {t('email')}
+              </label>
               <input
                 type="email"
                 id="email"
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
+                className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary dark:bg-gray-700 dark:border-gray-600"
                 required
-                className="w-full px-3 py-2 border rounded-md dark:bg-gray-700"
               />
             </div>
 
-            <div className="mb-4">
-              <label htmlFor="subject" className="block mb-2">{t('subject')}</label>
-              <select
+            <div>
+              <label htmlFor="subject" className="block text-sm font-medium mb-2">
+                {t('subject')}
+              </label>
+              <input
+                type="text"
                 id="subject"
                 name="subject"
                 value={formData.subject}
                 onChange={handleChange}
+                className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary dark:bg-gray-700 dark:border-gray-600"
                 required
-                className="w-full px-3 py-2 border rounded-md dark:bg-gray-700"
-              >
-                <option value="">{t('selectSubject')}</option>
-                <option value="general">{t('generalInquiry')}</option>
-                <option value="support">{t('technicalSupport')}</option>
-                <option value="sales">{t('sales')}</option>
-              </select>
+              />
             </div>
-            
-            <div className="mb-4">
-              <label htmlFor="message" className="block mb-2">{t('message')}</label>
+
+            <div>
+              <label htmlFor="message" className="block text-sm font-medium mb-2">
+                {t('message')}
+              </label>
               <textarea
                 id="message"
                 name="message"
                 value={formData.message}
                 onChange={handleChange}
+                rows={5}
+                className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-primary dark:bg-gray-700 dark:border-gray-600"
                 required
-                rows={4}
-                className="w-full px-3 py-2 border rounded-md dark:bg-gray-700"
-              ></textarea>
+              />
             </div>
-            
-            <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition duration-300">
+
+            <button
+              type="submit"
+              className="bg-primary text-white px-6 py-2 rounded-lg hover:bg-primary/90 transition-colors"
+            >
               {t('send')}
             </button>
           </form>
         </div>
       </div>
     </div>
-  );
-};
-
-export default ContactPage;
+  )
+}
