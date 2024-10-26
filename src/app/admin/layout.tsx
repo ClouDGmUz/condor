@@ -12,21 +12,32 @@ export default function AdminLayout({
   const [isAuthenticated, setIsAuthenticated] = useState(false)
 
   useEffect(() => {
-    // Check authentication status
-    const checkAuth = async () => {
-      try {
-        const response = await fetch('/api/auth/check')
-        if (!response.ok) {
-          router.push('/admin/login')
-        } else {
-          setIsAuthenticated(true)
-        }
-      } catch (error) {
-        router.push('/admin/login')
-      }
-    }
     checkAuth()
-  }, [router])
+  }, [])
+
+  const checkAuth = async () => {
+    try {
+      const response = await fetch('/api/auth/check')
+      if (!response.ok) {
+        router.push('/admin/login')
+      } else {
+        setIsAuthenticated(true)
+      }
+    } catch (error) {
+      router.push('/admin/login')
+    }
+  }
+
+  const handleLogout = async () => {
+    try {
+      await fetch('/api/auth/logout', {
+        method: 'POST'
+      })
+      router.push('/admin/login')
+    } catch (error) {
+      console.error('Logout failed:', error)
+    }
+  }
 
   if (!isAuthenticated) {
     return null
@@ -64,6 +75,12 @@ export default function AdminLayout({
           >
             Contact Messages
           </Link>
+          <button
+            onClick={handleLogout}
+            className="block w-full text-left px-4 py-2 text-red-600 dark:text-red-400 hover:bg-gray-100 dark:hover:bg-gray-700"
+          >
+            Logout
+          </button>
         </nav>
       </div>
 
