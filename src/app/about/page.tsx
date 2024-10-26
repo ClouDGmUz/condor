@@ -31,6 +31,39 @@ export default function About() {
         </div>
       </div>
 
+      {/* Shop Information Section */}
+      <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-8 mb-12">
+        <h2 className="text-2xl font-semibold mb-6">{t('ourShop')}</h2>
+        <div className="grid md:grid-cols-2 gap-8">
+          <div>
+            <h3 className="text-xl font-semibold mb-3">{t('shopLocation')}</h3>
+            <p className="text-gray-600 dark:text-gray-300 mb-4">{t('shopLocationDesc')}</p>
+            <div className="space-y-2">
+              <p className="text-gray-600 dark:text-gray-300">
+                <span className="font-semibold">{t('address')}:</span> {t('shopAddress')}
+              </p>
+              <p className="text-gray-600 dark:text-gray-300">
+                <span className="font-semibold">{t('workingHours')}:</span> {t('shopWorkingHours')}
+              </p>
+              <p className="text-gray-600 dark:text-gray-300">
+                <span className="font-semibold">{t('phoneNumbers')}:</span> {t('shopPhoneNumbers')}
+              </p>
+            </div>
+          </div>
+          <div>
+            <h3 className="text-xl font-semibold mb-3">{t('shopServices')}</h3>
+            <ul className="space-y-2 text-gray-600 dark:text-gray-300">
+              {[1, 2, 3, 4].map((i) => (
+                <li key={i} className="flex items-center">
+                  <span className="mr-2">✓</span>
+                  {t(`shopService${i}`)}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+
       <div className="bg-gray-50 dark:bg-gray-800 rounded-lg p-8 mb-12">
         <h2 className="text-2xl font-semibold mb-6">{t('whyChooseUs')}</h2>
         <div className="grid md:grid-cols-3 gap-6">

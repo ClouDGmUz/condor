@@ -8,8 +8,11 @@ import { LanguageProvider } from '@/components/LanguageProvider'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'My Next.js App',
-  description: 'A modern business website built with Next.js',
+  title: 'Condor',
+  description: 'Condor - Automotive Fluids Manufacturer',
+  icons: {
+    icon: '/favicon.ico',
+  },
 }
 
 export default function RootLayout({

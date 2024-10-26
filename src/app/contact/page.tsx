@@ -38,22 +38,22 @@ export default function Contact() {
               <h3 className="text-lg font-semibold mb-2">{t('address')}</h3>
               <p className="text-gray-600 dark:text-gray-300">
                 123 Business Street,<br />
-                Tashkent, Uzbekistan
+                Quqon, Uzbekistan
               </p>
             </div>
 
             <div>
               <h3 className="text-lg font-semibold mb-2">{t('phoneNumbers')}</h3>
               <p className="text-gray-600 dark:text-gray-300">
-                +998 71 123 45 67<br />
-                +998 90 123 45 67
+                +998 94 163 70 07<br />
+                +998 91 203 63 35
               </p>
             </div>
 
             <div>
               <h3 className="text-lg font-semibold mb-2">{t('email')}</h3>
               <p className="text-gray-600 dark:text-gray-300">
-                info@condor.uz
+                info@condoroil.uz
               </p>
             </div>
 

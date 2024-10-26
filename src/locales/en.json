@@ -139,5 +139,47 @@
   "categorydotTitle": "ABC Brake Fluid",
   "categorydotDesc": "High-quality brake fluids for maximum safety",
   "categorymoreTitle": "More Products",
-  "categorymoreDesc": "Discover our full range of automotive fluids"
+  "categorymoreDesc": "Discover our full range of automotive fluids",
+
+  "ourShop": "Our Shop",
+  "shopLocation": "Shop Location",
+  "shopLocationDesc": "Visit our main shop in Quqon for a wide range of automotive products and expert advice.",
+  "shopAddress": "123 Business Street, Quqon, Uzbekistan",
+  "shopWorkingHours": "Saturday - Sunday: 8:00 - 16:00",
+  "shopPhoneNumbers": "+998 94 163 70 07, +998 91 203 63 35",
+  
+  "shopServices": "Services We Offer",
+  "shopService1": "Professional product consultation",
+  "shopService2": "Bulk order processing",
+  "shopService3": "Product quality testing",
+  "shopService4": "Technical support and advice",
+
+  "privacyPolicyTitle": "Privacy Policy",
+  "privacyPolicyLastUpdated": "Last Updated: March 2024",
+  "privacyPolicyIntro": "This Privacy Policy describes how Condor ('we', 'our', or 'us') collects, uses, and protects your personal information.",
+  "dataWeCollect": "Information We Collect",
+  "dataWeCollectDesc": "We collect information that you provide directly to us, including:",
+  "dataPoint1": "Name and contact information",
+  "dataPoint2": "Order and transaction details",
+  "dataPoint3": "Communication preferences",
+  "dataPoint4": "Feedback and correspondence",
+  
+  "howWeUseData": "How We Use Your Information",
+  "howWeUseDataDesc": "We use the collected information to:",
+  "usePoint1": "Process and fulfill your orders",
+  "usePoint2": "Communicate with you about products and services",
+  "usePoint3": "Improve our products and customer service",
+  "usePoint4": "Comply with legal obligations",
+  
+  "termsTitle": "Terms of Service",
+  "termsLastUpdated": "Last Updated: March 2024",
+  "termsIntro": "These Terms of Service govern your use of Condor's products and services.",
+  "termsSection1": "Product Usage",
+  "termsSection1Desc": "Our products should be used in accordance with manufacturer specifications and safety guidelines.",
+  "termsSection2": "Orders and Payment",
+  "termsSection2Desc": "All orders are subject to availability and acceptance. Prices are subject to change without notice.",
+  "termsSection3": "Returns and Refunds",
+  "termsSection3Desc": "Products may be returned within 14 days of purchase if unused and in original packaging.",
+  "termsSection4": "Liability",
+  "termsSection4Desc": "We are not liable for any damages resulting from improper use of our products."
 }

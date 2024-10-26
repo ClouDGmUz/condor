@@ -1,5 +1,6 @@
 'use client'
 import { useTranslation } from 'react-i18next'
+import Link from 'next/link'
 
 export function Footer() {
   const { t } = useTranslation()
@@ -12,12 +13,18 @@ export function Footer() {
             © 2024 Condor MCHJ. {t('allRightsReserved')}
           </div>
           <div className="flex space-x-6">
-            <a href="#" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400">
+            <Link 
+              href="/privacy-policy" 
+              className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400"
+            >
               {t('privacyPolicy')}
-            </a>
-            <a href="#" className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400">
+            </Link>
+            <Link 
+              href="/terms-of-service" 
+              className="text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400"
+            >
               {t('termsOfService')}
-            </a>
+            </Link>
           </div>
         </div>
       </div>

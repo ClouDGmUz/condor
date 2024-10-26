@@ -1,23 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://www.localhost:3000</loc>
+    <loc>https://www.condoroil.uz</loc>
     <lastmod>2024-01-01</lastmod>
   </url>
   <url>
-    <loc>https://www.localhost:3000.com/products</loc>
+    <loc>https://www.condoroil.uz/products</loc>
     <lastmod>2024-01-01</lastmod>
   </url>
   <url>
-    <loc>https://www.localhost:3000.com/agents</loc>
+    <loc>https://www.condoroil.uz/agents</loc>
     <lastmod>2024-01-01</lastmod>
   </url>
   <url>
-    <loc>https://www.localhost:3000.com/about</loc>
+    <loc>https://www.condoroil.uz/about</loc>
     <lastmod>2024-01-01</lastmod>
   </url>
   <url>
-    <loc>https://www.localhost:3000.com/contact</loc>
+    <loc>https://www.condoroil.uz/contact</loc>
+    <lastmod>2024-01-01</lastmod>
+  </url>
+  <url>
+    <loc>https://www.condoroil.uz/privacy-policy</loc>
+    <lastmod>2024-01-01</lastmod>
+  </url>
+  <url>
+    <loc>https://www.condoroil.uz/terms-of-service</loc>
     <lastmod>2024-01-01</lastmod>
   </url>
 </urlset>
