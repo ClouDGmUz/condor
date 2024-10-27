@@ -44,6 +44,18 @@ export default function AdminLayout({
     checkAuth()
   }, [router, pathname])
 
+  const handleLogout = async () => {
+    try {
+      await fetch('/api/auth/logout', {
+        method: 'POST',
+        credentials: 'include'
+      })
+      router.push('/admin/login')
+    } catch (error) {
+      console.error('Logout failed:', error)
+    }
+  }
+
   // Show nothing while checking authentication
   if (isLoading) {
     return <div className="flex items-center justify-center min-h-screen">
@@ -77,6 +89,12 @@ export default function AdminLayout({
             Products
           </Link>
           <Link 
+            href="/admin/categories"
+            className="block px-4 py-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
+          >
+            Categories
+          </Link>
+          <Link 
             href="/admin/agents"
             className="block px-4 py-2 text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700"
           >
@@ -89,10 +107,7 @@ export default function AdminLayout({
             Contact Messages
           </Link>
           <button
-            onClick={async () => {
-              await fetch('/api/auth/logout', { method: 'POST' })
-              router.push('/admin/login')
-            }}
+            onClick={handleLogout}
             className="block w-full text-left px-4 py-2 text-red-600 dark:text-red-400 hover:bg-gray-100 dark:hover:bg-gray-700"
           >
             Logout

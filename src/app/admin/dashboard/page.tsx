@@ -1,5 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react'
+import JSZip from 'jszip'
+import { saveAs } from 'file-saver'
 
 interface Contact {
   id: string
@@ -95,13 +97,44 @@ export default function AdminDashboard() {
     }
   }
 
+  const handleBackup = async () => {
+    try {
+      // Fetch all data
+      const [productsRes, agentsRes, contactsRes] = await Promise.all([
+        fetch('/api/admin/products'),
+        fetch('/api/admin/agents'),
+        fetch('/api/admin/contacts')
+      ])
+
+      const products = await productsRes.json()
+      const agents = await agentsRes.json()
+      const contacts = await contactsRes.json()
+
+      // Create ZIP file
+      const zip = new JSZip()
+      
+      // Add JSON files to ZIP
+      zip.file('products.json', JSON.stringify(products, null, 2))
+      zip.file('agents.json', JSON.stringify(agents, null, 2))
+      zip.file('contacts.json', JSON.stringify(contacts, null, 2))
+
+      // Generate and download ZIP file
+      const content = await zip.generateAsync({ type: 'blob' })
+      const date = new Date().toISOString().split('T')[0]
+      saveAs(content, `condor-backup-${date}.zip`)
+    } catch (err) {
+      console.error('Failed to create backup:', err)
+      alert('Error creating backup')
+    }
+  }
+
   if (loading) return <div>Loading...</div>
 
   return (
     <div>
       <div className="flex justify-between items-center mb-8">
         <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Dashboard</h1>
-        <div className="space-x-4">
+        <div className="flex space-x-4">
           <div className="inline-block relative">
             <input
               type="file"
@@ -124,6 +157,15 @@ export default function AdminDashboard() {
               Import Products
             </button>
           </div>
+          <button
+            onClick={handleBackup}
+            className="bg-purple-500 text-white px-4 py-2 rounded hover:bg-purple-600 flex items-center"
+          >
+            <span className="mr-2">Download Backup</span>
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+            </svg>
+          </button>
         </div>
       </div>
 
