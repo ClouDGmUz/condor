@@ -3,28 +3,38 @@ import { useTranslation } from 'react-i18next'
 import { useState, useEffect } from 'react'
 
 interface Agent {
-  id: number
+  id: string
   name: string
   phone: string
+  region?: string
 }
 
 export default function Agents() {
   const { t } = useTranslation()
   const [agents, setAgents] = useState<Agent[]>([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState('')
 
   useEffect(() => {
     async function fetchAgents() {
       try {
-        const response = await fetch('/agents.json')
+        const response = await fetch('/api/agents')
+        if (!response.ok) throw new Error('Failed to fetch agents')
         const data = await response.json()
         setAgents(data)
       } catch (error) {
         console.error('Error loading agents:', error)
+        setError('Failed to load agents')
+      } finally {
+        setLoading(false)
       }
     }
 
     fetchAgents()
   }, [])
+
+  if (loading) return <div>Loading...</div>
+  if (error) return <div className="text-red-500">{error}</div>
 
   return (
     <div className="container mx-auto px-4 py-8">
@@ -34,6 +44,9 @@ export default function Agents() {
           <div key={agent.id} className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6">
             <h2 className="text-xl font-semibold mb-2">{agent.name}</h2>
             <p className="text-gray-600 dark:text-gray-400">{agent.phone}</p>
+            {agent.region && (
+              <p className="text-gray-500 dark:text-gray-500 text-sm mt-1">{agent.region}</p>
+            )}
           </div>
         ))}
       </div>

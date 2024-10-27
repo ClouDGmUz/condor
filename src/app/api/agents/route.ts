@@ -3,20 +3,20 @@ import { NextResponse } from 'next/server'
 
 export async function GET() {
   try {
-    const products = await prisma.product.findMany({
+    const agents = await prisma.agent.findMany({
       where: {
-        inStock: true
+        active: true
       },
       orderBy: {
-        category: 'asc'
+        name: 'asc'
       }
     })
     
-    return NextResponse.json(products)
+    return NextResponse.json(agents)
   } catch (error) {
-    console.error('Failed to fetch products:', error)
+    console.error('Failed to fetch agents:', error)
     return NextResponse.json(
-      { error: 'Failed to fetch products' },
+      { error: 'Failed to fetch agents' },
       { status: 500 }
     )
   }

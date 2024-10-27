@@ -22,26 +22,110 @@ export default function AdminDashboard() {
     totalContacts: 0,
     recentContacts: []
   })
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState('')
 
   useEffect(() => {
-    const fetchStats = async () => {
-      try {
-        const response = await fetch('/api/admin/stats')
-        if (response.ok) {
-          const data = await response.json()
-          setStats(data)
-        }
-      } catch (error) {
-        console.error('Error fetching stats:', error)
-      }
-    }
-
     fetchStats()
   }, [])
 
+  const fetchStats = async () => {
+    try {
+      const response = await fetch('/api/admin/stats')
+      if (response.ok) {
+        const data = await response.json()
+        setStats(data)
+      }
+    } catch (error) {
+      console.error('Error fetching stats:', error)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  const handleImportAgents = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0]
+    if (!file) return
+
+    try {
+      const content = await file.text()
+      const agents = JSON.parse(content)
+
+      const response = await fetch('/api/admin/agents/import', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(agents)
+      })
+
+      if (!response.ok) throw new Error('Failed to import agents')
+      const data = await response.json()
+      alert(`Successfully imported ${data.imported} agents`)
+      fetchStats()
+    } catch (err) {
+      console.error('Failed to import agents:', err)
+      alert('Error importing agents')
+    }
+  }
+
+  const handleImportProducts = async (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0]
+    if (!file) return
+
+    try {
+      const content = await file.text()
+      const products = JSON.parse(content)
+
+      const response = await fetch('/api/admin/products/import', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(products)
+      })
+
+      if (!response.ok) throw new Error('Failed to import products')
+      const data = await response.json()
+      alert(`Successfully imported ${data.imported} products`)
+      fetchStats()
+    } catch (err) {
+      console.error('Failed to import products:', err)
+      alert('Error importing products')
+    }
+  }
+
+  if (loading) return <div>Loading...</div>
+
   return (
     <div>
-      <h1 className="text-2xl font-bold mb-8 text-gray-900 dark:text-gray-100">Dashboard</h1>
+      <div className="flex justify-between items-center mb-8">
+        <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Dashboard</h1>
+        <div className="space-x-4">
+          <div className="inline-block relative">
+            <input
+              type="file"
+              accept=".json"
+              onChange={handleImportAgents}
+              className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+            />
+            <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+              Import Agents
+            </button>
+          </div>
+          <div className="inline-block relative">
+            <input
+              type="file"
+              accept=".json"
+              onChange={handleImportProducts}
+              className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+            />
+            <button className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
+              Import Products
+            </button>
+          </div>
+        </div>
+      </div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
         <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow">
