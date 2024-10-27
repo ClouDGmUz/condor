@@ -11,7 +11,6 @@ export function Navbar() {
   const [mounted, setMounted] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
-  // Prevent hydration mismatch by only rendering theme toggle after mount
   useEffect(() => {
     setMounted(true)
   }, [])
@@ -21,34 +20,28 @@ export function Navbar() {
   }
 
   return (
-    <nav className="bg-white dark:bg-gray-800 shadow">
+    <nav className="bg-white dark:bg-gray-800 border-b border-gray-100 dark:border-gray-700">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-<<<<<<< HEAD
-        <div className="flex justify-between h-16">
-          <div className="flex items-center">
-=======
         <div className="flex justify-between h-16 items-center">
           <div className="flex">
->>>>>>> 9b2fd201569d4ee453160777a1057cf24a7b0c21
             <Link href="/" className="flex items-center">
-              <span className="text-xl font-bold text-gray-800 dark:text-white">Condor</span>
+              <span className="text-xl font-bold text-primary dark:text-white">Condor</span>
             </Link>
           </div>
 
-<<<<<<< HEAD
           {/* Mobile menu button */}
-          <div className="flex items-center md:hidden">
+          <div className="flex items-center md:hidden space-x-4">
             <button
               onClick={toggleLanguage}
-              className="px-3 py-1 rounded-md text-gray-600 dark:text-gray-300 mr-2"
+              className="px-2 py-1 text-sm text-gray-600 dark:text-gray-300 hover:text-primary"
             >
-              {i18n.language === 'en' ? 'UZ' : 'EN'}
+              {i18n.language === 'en' ? 'EN' : 'UZ'}
             </button>
 
             {mounted && (
               <button
                 onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-                className="p-2 rounded-md text-gray-600 dark:text-gray-300 mr-2"
+                className="p-1 text-gray-600 dark:text-gray-300 hover:text-primary"
                 aria-label="Toggle theme"
               >
                 {theme === 'dark' ? '🌞' : '🌙'}
@@ -57,7 +50,7 @@ export function Navbar() {
 
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-600 dark:text-gray-300"
+              className="inline-flex items-center justify-center p-2 text-gray-600 dark:text-gray-300 hover:text-primary"
               aria-label="Main menu"
             >
               {!isMenuOpen ? (
@@ -73,35 +66,31 @@ export function Navbar() {
           </div>
 
           {/* Desktop menu */}
-          <div className="hidden md:flex md:items-center md:space-x-4">
-=======
-          <div className="flex items-center space-x-4 md:space-x-6 lg:space-x-8">
->>>>>>> 9b2fd201569d4ee453160777a1057cf24a7b0c21
-            <Link href="/products" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
+          <div className="hidden md:flex md:items-center md:space-x-8">
+            <Link href="/products" className="text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-white text-sm font-medium">
               {t('products')}
             </Link>
-            <Link href="/agents" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
+            <Link href="/agents" className="text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-white text-sm font-medium">
               {t('agents')}
             </Link>
-            <Link href="/about" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
+            <Link href="/about" className="text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-white text-sm font-medium">
               {t('about')}
             </Link>
-            <Link href="/contact" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
+            <Link href="/contact" className="text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-white text-sm font-medium">
               {t('contact')}
             </Link>
 
             <button
               onClick={toggleLanguage}
-              className="px-3 py-1 rounded-md text-gray-600 dark:text-gray-300 md:px-4 md:py-2"
+              className="px-2 py-1 text-sm text-gray-600 hover:text-primary dark:text-gray-300 font-medium"
             >
-              {i18n.language === 'en' ? 'UZ' : 'EN'}
+              {i18n.language === 'en' ? 'EN' : 'UZ'}
             </button>
 
-<<<<<<< HEAD
             {mounted && (
               <button
                 onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-                className="p-2 rounded-md text-gray-600 dark:text-gray-300"
+                className="p-1 text-gray-600 hover:text-primary dark:text-gray-300"
                 aria-label="Toggle theme"
               >
                 {theme === 'dark' ? '🌞' : '🌙'}
@@ -110,38 +99,33 @@ export function Navbar() {
           </div>
         </div>
 
-        {/* Mobile menu, show/hide based on menu state */}
-        <div className={`${isMenuOpen ? 'block' : 'hidden'} md:hidden`}>
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+        {/* Mobile menu */}
+        <div className={`${isMenuOpen ? 'block' : 'hidden'} md:hidden bg-white dark:bg-gray-800`}>
+          <div className="px-2 pt-2 pb-3 space-y-1 border-t border-gray-100 dark:border-gray-700">
             <Link
               href="/products"
-              className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700"
+              className="block px-3 py-2 text-base text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-white font-medium"
               onClick={() => setIsMenuOpen(false)}
-=======
-            <button
-              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-              className="p-2 rounded-md text-gray-600 dark:text-gray-300 md:p-3"
->>>>>>> 9b2fd201569d4ee453160777a1057cf24a7b0c21
             >
               {t('products')}
             </Link>
             <Link
               href="/agents"
-              className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700"
+              className="block px-3 py-2 text-base text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-white font-medium"
               onClick={() => setIsMenuOpen(false)}
             >
               {t('agents')}
             </Link>
             <Link
               href="/about"
-              className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700"
+              className="block px-3 py-2 text-base text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-white font-medium"
               onClick={() => setIsMenuOpen(false)}
             >
               {t('about')}
             </Link>
             <Link
               href="/contact"
-              className="block px-3 py-2 rounded-md text-base font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-gray-700"
+              className="block px-3 py-2 text-base text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-white font-medium"
               onClick={() => setIsMenuOpen(false)}
             >
               {t('contact')}
