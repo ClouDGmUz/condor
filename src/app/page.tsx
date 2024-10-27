@@ -1,13 +1,18 @@
-'use client'
+import { Metadata } from 'next'
 import { useTranslation } from 'react-i18next'
 import Link from 'next/link'
 
-export const metadata = {
-  title: 'Home | Condor',
-  description: 'Condor - Automotive Fluids Manufacturer'
+export async function generateMetadata(): Promise<Metadata> {
+  return {
+    title: 'Home | Condor',
+    description: 'Condor - Automotive Fluids Manufacturer',
+    icons: {
+      icon: '/favicon.ico',
+    },
+  }
 }
 
-export default function Home() {
+export default function Page() {
   const { t } = useTranslation()
 
   const categories = [
