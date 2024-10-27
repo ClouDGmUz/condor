@@ -15,14 +15,14 @@ export function Navbar() {
   return (
     <nav className="bg-white dark:bg-gray-800 shadow">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16">
+        <div className="flex justify-between h-16 items-center">
           <div className="flex">
             <Link href="/" className="flex items-center">
               <span className="text-xl font-bold text-gray-800 dark:text-white">Condor</span>
             </Link>
           </div>
 
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-4 md:space-x-6 lg:space-x-8">
             <Link href="/products" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white">
               {t('products')}
             </Link>
@@ -38,14 +38,14 @@ export function Navbar() {
 
             <button
               onClick={toggleLanguage}
-              className="px-3 py-1 rounded-md text-gray-600 dark:text-gray-300"
+              className="px-3 py-1 rounded-md text-gray-600 dark:text-gray-300 md:px-4 md:py-2"
             >
               {i18n.language === 'en' ? 'UZ' : 'EN'}
             </button>
 
             <button
               onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-              className="p-2 rounded-md text-gray-600 dark:text-gray-300"
+              className="p-2 rounded-md text-gray-600 dark:text-gray-300 md:p-3"
             >
               {theme === 'dark' ? '🌞' : '🌙'}
             </button>
