@@ -11,10 +11,6 @@ export default function AdminLayout({
   const router = useRouter()
   const [isAuthenticated, setIsAuthenticated] = useState(false)
 
-  useEffect(() => {
-    checkAuth()
-  }, [checkAuth]) // Add checkAuth to dependency array
-
   const checkAuth = async () => {
     try {
       const response = await fetch('/api/auth/check')
@@ -27,6 +23,10 @@ export default function AdminLayout({
       router.push('/admin/login')
     }
   }
+
+  useEffect(() => {
+    checkAuth()
+  }, [checkAuth]) // Add checkAuth to dependency array
 
   const handleLogout = async () => {
     try {
