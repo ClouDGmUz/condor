@@ -1,3 +1,4 @@
+'use client'
 import { Metadata } from 'next'
 import { useTranslation } from 'react-i18next'
 import Link from 'next/link'
