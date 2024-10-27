@@ -10,11 +10,11 @@ export async function POST(request: Request) {
     const { username, password } = body
 
     if (username === ADMIN_USERNAME && password === ADMIN_PASSWORD) {
-      // In a real app, you'd want to use proper JWT tokens
       cookies().set('admin_token', 'authenticated', {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
-        sameSite: 'strict',
+        sameSite: 'lax',
+        path: '/',
         maxAge: 60 * 60 * 24 // 24 hours
       })
 
