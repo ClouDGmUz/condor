@@ -2,6 +2,11 @@
 import { useTranslation } from 'react-i18next'
 import Link from 'next/link'
 
+export const metadata = {
+  title: 'Home | Condor',
+  description: 'Condor - Automotive Fluids Manufacturer'
+}
+
 export default function Home() {
   const { t } = useTranslation()
 
