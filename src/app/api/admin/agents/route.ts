@@ -10,6 +10,7 @@ export async function GET() {
     })
     return NextResponse.json(agents)
   } catch (error) {
+    console.error('Failed to fetch agents:', error)
     return NextResponse.json(
       { error: 'Failed to fetch agents' },
       { status: 500 }
@@ -25,6 +26,7 @@ export async function POST(request: Request) {
     })
     return NextResponse.json(agent)
   } catch (error) {
+    console.error('Failed to create agent:', error)
     return NextResponse.json(
       { error: 'Failed to create agent' },
       { status: 500 }
