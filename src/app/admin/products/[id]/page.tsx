@@ -39,7 +39,8 @@ export default function EditProduct({ params }: { params: { id: string } }) {
         if (!response.ok) throw new Error('Failed to fetch product')
         const data = await response.json()
         setFormData(data)
-      } catch (error) {
+      } catch (err) {
+        console.error('Failed to fetch product:', err)
         setError('Error loading product')
       } finally {
         setLoading(false)
@@ -66,7 +67,8 @@ export default function EditProduct({ params }: { params: { id: string } }) {
       if (!response.ok) throw new Error('Failed to update product')
       
       router.push('/admin/products')
-    } catch (error) {
+    } catch (err) {
+      console.error('Failed to update product:', err)
       setError('Error updating product')
     } finally {
       setLoading(false)

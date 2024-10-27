@@ -27,7 +27,8 @@ export default function AdminAgents() {
       if (!response.ok) throw new Error('Failed to fetch agents')
       const data = await response.json()
       setAgents(data)
-    } catch (error) {
+    } catch (err) {
+      console.error('Failed to fetch agents:', err)
       setError('Error loading agents')
     } finally {
       setLoading(false)
@@ -43,7 +44,8 @@ export default function AdminAgents() {
       })
       if (!response.ok) throw new Error('Failed to delete agent')
       fetchAgents()
-    } catch (error) {
+    } catch (err) {
+      console.error('Failed to delete agent:', err)
       setError('Error deleting agent')
     }
   }
@@ -59,7 +61,8 @@ export default function AdminAgents() {
       })
       if (!response.ok) throw new Error('Failed to update agent')
       fetchAgents()
-    } catch (error) {
+    } catch (err) {
+      console.error('Failed to update agent status:', err)
       setError('Error updating agent')
     }
   }

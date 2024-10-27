@@ -26,8 +26,9 @@ export default function AdminLogin() {
       } else {
         setError('Invalid credentials')
       }
-    } catch (error) {
-      setError('An error occurred')
+    } catch (err) {
+      console.error('Login failed:', err)
+      setError('Failed to login')
     }
   }
 

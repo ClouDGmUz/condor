@@ -31,7 +31,8 @@ export default function AdminProducts() {
       if (!response.ok) throw new Error('Failed to fetch products')
       const data = await response.json()
       setProducts(data)
-    } catch (error) {
+    } catch (err) {
+      console.error('Failed to fetch products:', err)
       setError('Error loading products')
     } finally {
       setLoading(false)
@@ -47,7 +48,8 @@ export default function AdminProducts() {
       })
       if (!response.ok) throw new Error('Failed to delete product')
       fetchProducts()
-    } catch (error) {
+    } catch (err) {
+      console.error('Failed to delete product:', err)
       setError('Error deleting product')
     }
   }

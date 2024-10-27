@@ -59,7 +59,8 @@ export default function EditAgent({ params }: { params: { id: string } }) {
       if (!response.ok) throw new Error('Failed to update agent')
       
       router.push('/admin/agents')
-    } catch (error) {
+    } catch (err) {
+      console.error('Failed to update agent:', err)
       setError('Error updating agent')
     } finally {
       setLoading(false)

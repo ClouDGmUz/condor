@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import { useRouter } from 'next/navigation'
 import Link from 'next/link'
 
@@ -9,24 +9,25 @@ export default function AdminLayout({
   children: React.ReactNode
 }) {
   const router = useRouter()
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
+  const [isAuthenticated] = useState(false)
 
-  const checkAuth = async () => {
+  const checkAuth = useCallback(async () => {
     try {
       const response = await fetch('/api/auth/check')
-      if (!response.ok) {
+      if (!response.ok) throw new Error('Not authenticated')
+      const data = await response.json()
+      if (!data.authenticated) {
         router.push('/admin/login')
-      } else {
-        setIsAuthenticated(true)
       }
-    } catch (error) {
+    } catch (err) {
+      console.error('Auth check failed:', err)
       router.push('/admin/login')
     }
-  }
+  }, [router])
 
   useEffect(() => {
     checkAuth()
-  }, [checkAuth]) // Add checkAuth to dependency array
+  }, [checkAuth])
 
   const handleLogout = async () => {
     try {

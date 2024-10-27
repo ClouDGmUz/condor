@@ -31,7 +31,8 @@ export default function NewAgent() {
       if (!response.ok) throw new Error('Failed to create agent')
       
       router.push('/admin/agents')
-    } catch (error) {
+    } catch (err) {
+      console.error('Failed to create agent:', err)
       setError('Error creating agent')
     } finally {
       setLoading(false)

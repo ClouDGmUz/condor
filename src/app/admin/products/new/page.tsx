@@ -38,7 +38,8 @@ export default function NewProduct() {
       if (!response.ok) throw new Error('Failed to create product')
       
       router.push('/admin/products')
-    } catch (error) {
+    } catch (err) {
+      console.error('Failed to create product:', err)
       setError('Error creating product')
     } finally {
       setLoading(false)
