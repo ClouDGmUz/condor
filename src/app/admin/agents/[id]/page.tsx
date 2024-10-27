@@ -31,8 +31,9 @@ export default function EditAgent({ params }: { params: { id: string } }) {
         if (!response.ok) throw new Error('Failed to fetch agent')
         const data = await response.json()
         setFormData(data)
-      } catch (error) {
+      } catch (err) {
         setError('Error loading agent')
+        console.error('Failed to fetch agent:', err)
       } finally {
         setLoading(false)
       }

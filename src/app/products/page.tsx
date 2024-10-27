@@ -1,6 +1,7 @@
 'use client'
 import { useTranslation } from 'react-i18next'
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
 
 interface Product {
   id: string
@@ -87,9 +88,11 @@ export default function Products() {
             className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden"
           >
             <div className="aspect-w-1 aspect-h-1">
-              <img
+              <Image
                 src={product.image}
                 alt={t(product.nameKey)}
+                width={500}
+                height={500}
                 className="w-full h-full object-cover"
               />
             </div>

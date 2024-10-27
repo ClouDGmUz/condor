@@ -11,7 +11,7 @@ i18n
       en: { translation: enTranslations },
       uz: { translation: uzTranslations },
     },
-    lng: 'uz', // Set Uzbek as the default language
+    lng: 'uz', // Default language
     fallbackLng: 'en',
     interpolation: {
       escapeValue: false,

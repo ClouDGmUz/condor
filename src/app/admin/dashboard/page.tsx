@@ -1,11 +1,18 @@
 'use client'
 import { useEffect, useState } from 'react'
 
+interface Contact {
+  id: string
+  name: string
+  subject: string
+  createdAt: Date
+}
+
 interface DashboardStats {
   totalProducts: number
   totalAgents: number
   totalContacts: number
-  recentContacts: any[]
+  recentContacts: Contact[]
 }
 
 export default function AdminDashboard() {

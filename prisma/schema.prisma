@@ -8,37 +8,36 @@ datasource db {
 }
 
 model Product {
-  id          String   @id @default(cuid())
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  name        String
-  nameKey     String   @unique // For translations
-  description String?
-  descriptionKey String @unique // For translations
-  category    String
-  volume      String?
-  image       String?
-  price       Decimal?
-  inStock     Boolean  @default(true)
+  id            String   @id @default(cuid())
+  name          String
+  nameKey       String
+  description   String?
+  descriptionKey String
+  category      String
+  volume        String?
+  image         String?
+  price         Float?
+  inStock       Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 }
 
 model Agent {
   id        String   @id @default(cuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
   name      String
   phone     String
   email     String?
   region    String?
   active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Contact {
   id        String   @id @default(cuid())
-  createdAt DateTime @default(now())
   name      String
   email     String
   subject   String
   message   String
-  responded Boolean  @default(false)
+  createdAt DateTime @default(now())
 }

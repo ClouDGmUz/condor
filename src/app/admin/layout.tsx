@@ -13,7 +13,7 @@ export default function AdminLayout({
 
   useEffect(() => {
     checkAuth()
-  }, [])
+  }, [checkAuth]) // Add checkAuth to dependency array
 
   const checkAuth = async () => {
     try {
@@ -39,8 +39,14 @@ export default function AdminLayout({
     }
   }
 
+  // Show nothing while checking authentication
   if (!isAuthenticated) {
     return null
+  }
+
+  // Special case for login page
+  if (window.location.pathname === '/admin/login') {
+    return <>{children}</>
   }
 
   return (
