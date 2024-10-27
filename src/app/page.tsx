@@ -34,11 +34,11 @@ export default function Page() {
       <section className="relative h-[600px] bg-gradient-to-r from-primary to-secondary">
         <div className="container mx-auto px-4 h-full flex items-center">
           <div className="text-white max-w-2xl">
-            <h1 className="text-5xl font-bold mb-6">{t('heroTitle')}</h1>
-            <p className="text-xl mb-8">{t('heroDescription')}</p>
+            <h1 className="text-3xl md:text-5xl font-bold mb-4 md:mb-6">{t('heroTitle')}</h1>
+            <p className="text-base md:text-xl mb-6 md:mb-8">{t('heroDescription')}</p>
             <Link
               href="/products"
-              className="bg-white text-primary px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+              className="inline-block bg-white text-primary px-6 md:px-8 py-2 md:py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors text-sm md:text-base"
             >
               {t('exploreProducts')}
             </Link>
