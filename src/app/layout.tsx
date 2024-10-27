@@ -36,7 +36,7 @@ export default function RootLayout({
               // Regular layout with Navbar and Footer
               <div className="flex flex-col min-h-screen">
                 <Navbar />
-                <main className="flex-grow">{children}</main>
+                <main className="flex-grow p-4 md:p-8">{children}</main> {/* Added padding */}
                 <Footer />
               </div>
             )}
