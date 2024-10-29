@@ -1,4 +1,4 @@
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient, Prisma } from '@prisma/client'
 
 const globalForPrisma = global as unknown as { prisma: PrismaClient }
 
@@ -23,8 +23,8 @@ export const prisma = globalForPrisma.prisma || new PrismaClient({
   ],
 })
 
-// Log all queries
-prisma.$on('query', (e) => {
+// Log all queries with correct typing
+prisma.$on('query' as never, (e: Prisma.QueryEvent) => {
   console.log('Query:', e.query)
   console.log('Params:', e.params)
   console.log('Duration:', `${e.duration}ms`)
