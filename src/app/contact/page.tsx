@@ -10,11 +10,40 @@ export default function Contact() {
     subject: '',
     message: ''
   })
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
+  const [success, setSuccess] = useState(false)
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle form submission here
-    console.log('Form submitted:', formData)
+    setLoading(true)
+    setError('')
+    setSuccess(false)
+
+    try {
+      const response = await fetch('/api/contacts', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      if (!response.ok) throw new Error('Failed to send message')
+
+      setSuccess(true)
+      setFormData({
+        name: '',
+        email: '',
+        subject: '',
+        message: ''
+      })
+    } catch (err) {
+      console.error('Failed to send message:', err)
+      setError(t('errorSendingMessage'))
+    } finally {
+      setLoading(false)
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -27,6 +56,18 @@ export default function Contact() {
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-4xl font-bold mb-8">{t('contact')}</h1>
+
+      {error && (
+        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded mb-4">
+          {error}
+        </div>
+      )}
+
+      {success && (
+        <div className="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
+          {t('messageSentSuccess')}
+        </div>
+      )}
 
       <div className="grid md:grid-cols-2 gap-12">
         {/* Contact Information */}
@@ -133,9 +174,10 @@ export default function Contact() {
 
             <button
               type="submit"
-              className="bg-primary text-white px-6 py-2 rounded-lg hover:bg-primary/90 transition-colors"
+              disabled={loading}
+              className="bg-primary text-white px-6 py-2 rounded-lg hover:bg-primary/90 transition-colors disabled:opacity-50"
             >
-              {t('send')}
+              {loading ? t('sending') : t('send')}
             </button>
           </form>
         </div>
