@@ -29,6 +29,11 @@ export default function Contact() {
         body: JSON.stringify(formData),
       })
 
+      if (response.status === 429) {
+        const retryAfter = response.headers.get('Retry-After')
+        throw new Error(`Too many requests. Please try again in ${retryAfter} seconds.`)
+      }
+
       if (!response.ok) throw new Error('Failed to send message')
 
       setSuccess(true)
@@ -40,7 +45,7 @@ export default function Contact() {
       })
     } catch (err) {
       console.error('Failed to send message:', err)
-      setError(t('errorSendingMessage'))
+      setError(err instanceof Error ? err.message : t('errorSendingMessage'))
     } finally {
       setLoading(false)
     }

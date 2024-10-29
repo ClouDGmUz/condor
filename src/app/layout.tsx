@@ -5,15 +5,36 @@ import { Footer } from '@/components/Footer'
 import { ThemeProvider } from '@/components/ThemeProvider'
 import { LanguageProvider } from '@/components/LanguageProvider'
 import React from 'react'
+import type { Metadata } from 'next'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Condor',
-  description: 'Condor - Automotive Fluids Manufacturer',
+  description: 'A modern business website built with Next.js',
+  metadataBase: new URL('https://condoroil.uz'),
+  openGraph: {
+    title: 'Condor',
+    description: 'A modern business website built with Next.js',
+    url: 'https://condoroil.uz',
+    siteName: 'Condor',
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    title: 'Condor',
+    description: 'A modern business website built with Next.js',
+    card: 'summary_large_image',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
   icons: {
     icon: '/favicon.ico',
-  },
+    // Add more icon sizes if needed
+    // apple: '/apple-icon.png',
+  }
 }
 
 export default function RootLayout({
