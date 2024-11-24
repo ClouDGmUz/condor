@@ -98,15 +98,15 @@ function ProductList() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-4xl font-bold mb-8">Products</h1>
+      <h1 className="text-4xl font-bold mb-8 text-light-muted dark:text-dark-text">{/* t('products') */}</h1>
 
       {/* Filters */}
       <div className="mb-8 flex flex-col md:flex-row gap-4 justify-between">
-        <div className="flex gap-4">
+        <div className="flex flex-col sm:flex-row gap-4">
           <select
             value={selectedCategory}
             onChange={(e) => handleCategoryChange(e.target.value)}
-            className="px-4 py-2 border rounded-lg dark:bg-gray-700 dark:border-gray-600"
+            className="px-4 py-2.5 bg-light-secondary dark:bg-dark-secondary text-light-muted dark:text-dark-text border border-light-accent/20 dark:border-dark-accent/20 rounded-lg focus:ring-2 focus:ring-light-accent dark:focus:ring-dark-accent focus:border-transparent outline-none transition-all duration-200"
           >
             <option value="all">All Categories</option>
             <option value="oil">Motor Oil</option>
@@ -120,7 +120,7 @@ function ProductList() {
             placeholder="Search products..."
             value={searchTerm}
             onChange={(e) => handleSearch(e.target.value)}
-            className="px-4 py-2 border rounded-lg dark:bg-gray-700 dark:border-gray-600"
+            className="px-4 py-2.5 bg-light-secondary dark:bg-dark-secondary text-light-muted dark:text-dark-text border border-light-accent/20 dark:border-dark-accent/20 rounded-lg focus:ring-2 focus:ring-light-accent dark:focus:ring-dark-accent focus:border-transparent outline-none transition-all duration-200 placeholder:text-light-muted/50 dark:placeholder:text-dark-text/50"
           />
         </div>
       </div>
@@ -128,14 +128,17 @@ function ProductList() {
       {/* Products Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {paginatedProducts.map((product) => (
-          <div key={product.id} className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
+          <div 
+            key={product.id} 
+            className="group bg-light-secondary dark:bg-dark-secondary rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-light-accent/10 dark:border-dark-accent/10"
+          >
             {product.image && (
-              <div className="relative h-48">
+              <div className="relative h-48 overflow-hidden">
                 <Image
                   src={getImageUrl(product.image)}
                   alt={product.name}
                   fill
-                  className="object-cover"
+                  className="object-cover group-hover:scale-105 transition-transform duration-300"
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                   onError={(e) => {
                     const target = e.target as HTMLImageElement
@@ -144,15 +147,18 @@ function ProductList() {
                 />
               </div>
             )}
-            <div className="p-4">
-              <h2 className="text-xl font-semibold mb-2">{product.name}</h2>
+            <div className="p-6">
+              <h2 className="text-xl font-semibold mb-3 text-light-muted dark:text-dark-text group-hover:text-light-accent dark:group-hover:text-dark-accent transition-colors duration-200">
+                {product.name}
+              </h2>
               {product.description && (
-                <p className="text-gray-600 dark:text-gray-400 text-sm mb-2">
+                <p className="text-light-muted/70 dark:text-dark-text/70 text-sm mb-3 line-clamp-2">
                   {product.description}
                 </p>
               )}
               {product.volume && (
-                <p className="text-gray-500 dark:text-gray-500 text-sm">
+                <p className="text-light-muted/60 dark:text-dark-text/60 text-sm flex items-center">
+                  <span className="inline-block w-5 h-5 mr-2">📦</span>
                   Volume: {product.volume}
                 </p>
               )}
@@ -167,7 +173,7 @@ function ProductList() {
           <button
             onClick={() => router.push(`/products?category=${selectedCategory}&page=${page - 1}`)}
             disabled={page === 1}
-            className="px-4 py-2 border rounded-lg disabled:opacity-50"
+            className="px-4 py-2 bg-light-secondary dark:bg-dark-secondary text-light-muted dark:text-dark-text border border-light-accent/20 dark:border-dark-accent/20 rounded-lg disabled:opacity-50 hover:bg-light-accent/10 dark:hover:bg-dark-accent/10 transition-all duration-200"
           >
             Previous
           </button>
@@ -175,9 +181,11 @@ function ProductList() {
             <button
               key={i + 1}
               onClick={() => router.push(`/products?category=${selectedCategory}&page=${i + 1}`)}
-              className={`px-4 py-2 border rounded-lg ${
-                page === i + 1 ? 'bg-primary text-white' : ''
-              }`}
+              className={`px-4 py-2 border border-light-accent/20 dark:border-dark-accent/20 rounded-lg transition-all duration-200 
+                ${page === i + 1 
+                  ? 'bg-light-accent dark:bg-dark-accent text-white dark:text-dark-text' 
+                  : 'bg-light-secondary dark:bg-dark-secondary text-light-muted dark:text-dark-text hover:bg-light-accent/10 dark:hover:bg-dark-accent/10'
+                }`}
             >
               {i + 1}
             </button>
@@ -185,7 +193,7 @@ function ProductList() {
           <button
             onClick={() => router.push(`/products?category=${selectedCategory}&page=${page + 1}`)}
             disabled={page === totalPages}
-            className="px-4 py-2 border rounded-lg disabled:opacity-50"
+            className="px-4 py-2 bg-light-secondary dark:bg-dark-secondary text-light-muted dark:text-dark-text border border-light-accent/20 dark:border-dark-accent/20 rounded-lg disabled:opacity-50 hover:bg-light-accent/10 dark:hover:bg-dark-accent/10 transition-all duration-200"
           >
             Next
           </button>
