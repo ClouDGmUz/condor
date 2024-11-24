@@ -99,7 +99,15 @@
   "subject": "Subject",
   "message": "Message",
   "send": "Send",
-
+  "sending": "Sending...",
+  "messageSentSuccess": "Your message has been sent successfully!",
+  "errorSendingMessage": "Failed to send message. Please try again.",
+  "namePlaceholder": "Enter your name",
+  "emailPlaceholder": "Enter your email",
+  "subjectPlaceholder": "Enter subject",
+  "messagePlaceholder": "Enter your message",
+  "contactDesc": "Get in touch with us. We'd love to hear from you!",
+  
   "heroTitle": "Premium Quality Motor Oils and Lubricants",
   "heroDescription": "Condor provides high-quality automotive oils and lubricants that meet international standards, ensuring optimal performance and protection for your vehicles.",
   "exploreProducts": "Explore Products",
