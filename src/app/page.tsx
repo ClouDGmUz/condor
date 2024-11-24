@@ -41,7 +41,7 @@ export default function Page() {
               <p className="text-base md:text-xl mb-6 md:mb-8">{t('heroDescription')}</p>
               <Link
                 href="/products"
-                className="inline-block bg-white text-primary px-6 md:px-8 py-2 md:py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors text-sm md:text-base"
+                className="inline-block bg-light-primary dark:bg-dark-accent text-light-muted dark:text-dark-text px-6 md:px-8 py-2.5 md:py-3.5 rounded-lg font-medium hover:bg-light-accent/20 dark:hover:bg-dark-accent/80 transition-all duration-200 text-sm md:text-base shadow-lg hover:shadow-xl"
               >
                 {t('exploreProducts')}
               </Link>
@@ -63,19 +63,26 @@ export default function Page() {
       </section>
 
       {/* Features Section */}
-      <section className="py-16 bg-gray-50 dark:bg-gray-900">
+      <section className="py-16 bg-light-primary dark:bg-dark-primary">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">{t('whyChooseUs')}</h2>
+          <h2 className="text-3xl font-bold text-center mb-12 text-light-muted dark:text-dark-text">{t('whyChooseUs')}</h2>
           <div className="grid md:grid-cols-3 gap-8">
             {[1, 2, 3].map((i) => (
-              <div key={i} className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
-                <div className="text-primary text-4xl mb-4">
+              <div 
+                key={i} 
+                className="bg-light-secondary dark:bg-dark-secondary p-8 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 border border-light-accent/10 dark:border-dark-accent/10"
+              >
+                <div className="text-4xl mb-6 bg-light-accent/10 dark:bg-dark-accent/10 w-16 h-16 rounded-lg flex items-center justify-center">
                   {i === 1 && '🌟'}
                   {i === 2 && '🔬'}
                   {i === 3 && '🌿'}
                 </div>
-                <h3 className="text-xl font-semibold mb-3">{t(`feature${i}Title`)}</h3>
-                <p className="text-gray-600 dark:text-gray-300">{t(`feature${i}Description`)}</p>
+                <h3 className="text-xl font-semibold mb-4 text-light-muted dark:text-dark-text">
+                  {t(`feature${i}Title`)}
+                </h3>
+                <p className="text-light-muted/80 dark:text-dark-text/80 leading-relaxed">
+                  {t(`feature${i}Description`)}
+                </p>
               </div>
             ))}
           </div>
@@ -83,21 +90,25 @@ export default function Page() {
       </section>
 
       {/* Product Categories */}
-      <section className="py-16">
+      <section className="py-16 bg-light-primary/50 dark:bg-dark-primary/50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-center mb-12">{t('ourProducts')}</h2>
+          <h2 className="text-3xl font-bold text-center mb-12 text-light-muted dark:text-dark-text">{t('ourProducts')}</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {categories.map((category) => (
               <Link
                 key={category.id}
                 href={category.id === 'more' ? '/products' : `/products?category=${category.id}`}
-                className="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-shadow"
+                className="group relative overflow-hidden rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
               >
-                <div className="aspect-w-1 aspect-h-1 bg-gray-100 dark:bg-gray-800">
-                  <div className="flex flex-col items-center justify-center p-6 text-center">
-                    <span className="text-4xl mb-4">{category.icon}</span>
-                    <h3 className="text-xl font-semibold mb-2">{t(`category${category.id}Title`)}</h3>
-                    <p className="text-sm text-gray-600 dark:text-gray-300">
+                <div className="aspect-w-1 aspect-h-1 bg-light-secondary dark:bg-dark-secondary border border-light-accent/10 dark:border-dark-accent/10">
+                  <div className="flex flex-col items-center justify-center p-8 text-center">
+                    <div className="text-4xl mb-6 bg-light-accent/10 dark:bg-dark-accent/10 w-16 h-16 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                      {category.icon}
+                    </div>
+                    <h3 className="text-xl font-semibold mb-3 text-light-muted dark:text-dark-text">
+                      {t(`category${category.id}Title`)}
+                    </h3>
+                    <p className="text-sm text-light-muted/80 dark:text-dark-text/80">
                       {t(`category${category.id}Desc`)}
                     </p>
                   </div>
@@ -109,20 +120,20 @@ export default function Page() {
       </section>
 
       {/* Call to Action */}
-      <section className="py-16 bg-primary">
-        <div className="container mx-auto px-4 text-center text-white">
-          <h2 className="text-3xl font-bold mb-6">{t('ctaTitle')}</h2>
-          <p className="text-xl mb-8 max-w-2xl mx-auto">{t('ctaDescription')}</p>
-          <div className="flex justify-center space-x-4">
+      <section className="py-16 bg-light-accent dark:bg-dark-accent">
+        <div className="container mx-auto px-4 text-center">
+          <h2 className="text-3xl font-bold mb-6 text-white dark:text-dark-text">{t('ctaTitle')}</h2>
+          <p className="text-xl mb-8 max-w-2xl mx-auto text-white/90 dark:text-dark-text/90">{t('ctaDescription')}</p>
+          <div className="flex flex-col sm:flex-row justify-center gap-4 sm:space-x-4">
             <Link
               href="/products"
-              className="bg-white text-primary px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
+              className="btn btn-secondary bg-light-primary dark:bg-dark-primary text-light-muted dark:text-dark-text hover:bg-light-primary/80 dark:hover:bg-dark-primary/80"
             >
               {t('viewProducts')}
             </Link>
             <Link
               href="/contact"
-              className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white/10 transition-colors"
+              className="btn btn-secondary backdrop-blur-sm bg-white/10 dark:bg-dark-primary/10 text-white dark:text-dark-text border border-white/20 dark:border-dark-text/20 hover:bg-white/20 dark:hover:bg-dark-primary/20"
             >
               {t('contactUs')}
             </Link>
@@ -131,15 +142,15 @@ export default function Page() {
       </section>
 
       {/* Trust Indicators */}
-      <section className="py-16 bg-gray-50 dark:bg-gray-900">
+      <section className="py-16 bg-light-primary dark:bg-dark-primary">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-4 gap-8 text-center">
             {[1, 2, 3, 4].map((i) => (
-              <div key={i} className="flex flex-col items-center">
-                <div className="text-4xl font-bold text-primary mb-2">
+              <div key={i} className="flex flex-col items-center group">
+                <div className="text-4xl font-bold mb-3 bg-gradient-to-r from-light-accent to-light-surface dark:from-dark-accent dark:to-dark-surface bg-clip-text text-transparent group-hover:scale-110 transition-transform duration-300">
                   {t(`stat${i}Number`)}
                 </div>
-                <div className="text-gray-600 dark:text-gray-300">
+                <div className="text-light-muted dark:text-dark-text/80">
                   {t(`stat${i}Label`)}
                 </div>
               </div>

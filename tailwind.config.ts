@@ -8,12 +8,22 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: '#1a73e8',
-        secondary: '#34a853',
-        accent: '#fbbc04',
-        background: {
-          light: '#f8f9fa',
-          dark: '#202124',
+        // Light mode - keeping the same
+        light: {
+          primary: '#ddd8c4',    // Warm Beige
+          secondary: '#a3c9a8',  // Sage Green
+          accent: '#84b59f',     // Soft Green
+          surface: '#69a297',    // Teal
+          muted: '#50808e',      // Blue Gray
+        },
+        // Dark mode - adjusted for better harmony
+        dark: {
+          primary: '#1a1d1a',    // Softer black background
+          secondary: '#2d3a3a',  // Muted teal-gray
+          accent: '#84b59f',     // Same as light accent for consistency
+          surface: '#374151',    // Slate gray for cards/sections
+          text: '#f2f4f3',       // Off white
+          muted: '#9ca3af',      // Muted gray for secondary text
         },
       },
       fontFamily: {
