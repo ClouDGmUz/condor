@@ -10,31 +10,58 @@ import type { Metadata } from 'next'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Condor',
-  description: 'A modern business website built with Next.js',
+  title: 'Condor - Premium Motor Oils and Lubricants',
+  description: 'Condor is Uzbekistan\'s leading manufacturer of high-quality motor oils, lubricants, and automotive fluids. Discover our premium products that meet international standards.',
   metadataBase: new URL('https://condoroil.uz'),
   openGraph: {
-    title: 'Condor',
-    description: 'A modern business website built with Next.js',
+    title: 'Condor - Premium Motor Oils and Lubricants',
+    description: 'Condor is Uzbekistan\'s leading manufacturer of high-quality motor oils, lubricants, and automotive fluids. Discover our premium products that meet international standards.',
     url: 'https://condoroil.uz',
     siteName: 'Condor',
     locale: 'en_US',
     type: 'website',
+    images: [
+      {
+        url: '/og-image.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Condor - Premium Motor Oils and Lubricants'
+      }
+    ]
   },
   twitter: {
-    title: 'Condor',
-    description: 'A modern business website built with Next.js',
     card: 'summary_large_image',
+    title: 'Condor - Premium Motor Oils and Lubricants',
+    description: 'Discover premium motor oils and lubricants that meet international standards.',
+    images: ['/twitter-image.jpg'],
+    creator: '@condoroil',
+    site: '@condoroil'
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
   icons: {
-    icon: '/favicon.ico',
-    // Add more icon sizes if needed
-    // apple: '/apple-icon.png',
-  }
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/icon.svg', type: 'image/svg+xml' }
+    ],
+    apple: [
+      { url: '/apple-icon.png', sizes: '180x180', type: 'image/png' }
+    ],
+    other: [
+      { rel: 'mask-icon', url: '/safari-pinned-tab.svg', color: '#5bbad5' }
+    ]
+  },
+  manifest: '/site.webmanifest',
+  keywords: ['motor oil', 'lubricants', 'automotive fluids', 'antifreeze', 'brake fluid', 'Uzbekistan', 'Condor']
 }
 
 export default function RootLayout({
