@@ -1,6 +1,7 @@
 'use client'
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
+import ImageUpload from '@/components/ImageUpload'
 
 interface Product {
   id: string
@@ -153,14 +154,13 @@ export default function EditProduct({ params }: { params: { id: string } }) {
             />
           </div>
 
-          <div>
-            <label className="block text-gray-700 dark:text-gray-300 mb-2">Image URL</label>
-            <input
-              type="text"
-              value={formData.image}
-              onChange={(e) => setFormData({ ...formData, image: e.target.value })}
-              className="w-full p-2 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200"
-            />
+          <div className="space-y-6">
+            <div className="max-w-2xl mx-auto">
+              <ImageUpload
+                currentImage={formData.image}
+                onImageChange={(url) => setFormData({ ...formData, image: url })}
+              />
+            </div>
           </div>
 
           <div>
