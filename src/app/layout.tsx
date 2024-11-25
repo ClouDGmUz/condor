@@ -4,6 +4,7 @@ import { Navbar } from '@/components/Navbar'
 import { Footer } from '@/components/Footer'
 import { ThemeProvider } from '@/components/ThemeProvider'
 import { LanguageProvider } from '@/components/LanguageProvider'
+import { headers } from 'next/headers'
 import React from 'react'
 import type { Metadata } from 'next'
 
@@ -69,8 +70,10 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
-  // Get the current path
-  const isAdminRoute = React.isValidElement(children) && children.props?.childProp?.segment === 'admin'
+  // Get the current pathname from headers
+  const headersList = headers()
+  const pathname = headersList.get('x-invoke-path') || ''
+  const isAdminRoute = pathname.startsWith('/admin')
 
   return (
     <html lang="en" suppressHydrationWarning>
@@ -79,12 +82,12 @@ export default function RootLayout({
           <LanguageProvider>
             {isAdminRoute ? (
               // Admin layout without Navbar and Footer
-              <div>{children}</div>
+              <div className="min-h-screen">{children}</div>
             ) : (
               // Regular layout with Navbar and Footer
               <div className="flex flex-col min-h-screen">
                 <Navbar />
-                <main className="flex-grow p-4 md:p-8">{children}</main> {/* Added padding */}
+                <main className="flex-grow p-4 md:p-8">{children}</main>
                 <Footer />
               </div>
             )}
