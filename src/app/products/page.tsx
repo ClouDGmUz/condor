@@ -130,38 +130,48 @@ function ProductList() {
         {paginatedProducts.map((product) => (
           <div 
             key={product.id} 
-            className="group bg-light-secondary dark:bg-dark-secondary rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-light-accent/10 dark:border-dark-accent/10"
+            className="group bg-light-secondary dark:bg-dark-secondary rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden border border-light-accent/10 dark:border-dark-accent/10 flex flex-col hover:translate-y-[-4px]"
           >
-            {product.image && (
-              <div className="relative h-48 overflow-hidden">
-                <Image
-                  src={getImageUrl(product.image)}
-                  alt={product.name}
-                  fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-300"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
-                  onError={(e) => {
-                    const target = e.target as HTMLImageElement
-                    target.src = '/placeholder-product.jpg'
-                  }}
-                />
+            <div className="aspect-[4/3] relative overflow-hidden bg-gradient-to-b from-transparent to-black/5">
+              <Image
+                src={getImageUrl(product.image)}
+                alt={product.name}
+                fill
+                className="object-cover group-hover:scale-110 transition-transform duration-500 ease-in-out"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement
+                  target.src = '/placeholder-product.jpg'
+                }}
+              />
+            </div>
+            
+            <div className="p-4">
+              <div className="flex justify-between items-start gap-2 mb-3">
+                <h2 className="text-lg font-bold text-light-muted dark:text-dark-text group-hover:text-light-accent dark:group-hover:text-dark-accent transition-colors duration-200 line-clamp-2">
+                  {product.name}
+                </h2>
+                <span className={`shrink-0 px-2 py-1 rounded-full text-xs font-medium ${
+                  product.inStock 
+                    ? 'bg-green-500/90 text-white' 
+                    : 'bg-red-500/90 text-white'
+                }`}>
+                  {product.inStock ? 'In Stock' : 'Out'}
+                </span>
               </div>
-            )}
-            <div className="p-6">
-              <h2 className="text-xl font-semibold mb-3 text-light-muted dark:text-dark-text group-hover:text-light-accent dark:group-hover:text-dark-accent transition-colors duration-200">
-                {product.name}
-              </h2>
-              {product.description && (
-                <p className="text-light-muted/70 dark:text-dark-text/70 text-sm mb-3 line-clamp-2">
-                  {product.description}
-                </p>
-              )}
-              {product.volume && (
-                <p className="text-light-muted/60 dark:text-dark-text/60 text-sm flex items-center">
-                  <span className="inline-block w-5 h-5 mr-2">📦</span>
-                  Volume: {product.volume}
-                </p>
-              )}
+              
+              <div className="flex justify-between items-center gap-2">
+                {product.price && (
+                  <p className="text-light-accent dark:text-dark-accent font-semibold text-lg">
+                    ${product.price.toLocaleString()}
+                  </p>
+                )}
+                {product.volume && (
+                  <p className="text-light-muted/80 dark:text-dark-text/80 text-sm bg-light-accent/5 dark:bg-dark-accent/5 px-2 py-1 rounded-lg">
+                    {product.volume}
+                  </p>
+                )}
+              </div>
             </div>
           </div>
         ))}
