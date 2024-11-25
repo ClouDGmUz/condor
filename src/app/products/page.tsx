@@ -81,7 +81,7 @@ function ProductList() {
   }
 
   const getImageUrl = (image?: string) => {
-    if (!image) return '/placeholder-product.jpg'
+    if (!image) return '/hero-image.webp'
     if (image.startsWith('http')) return image
     return image.startsWith('/') ? image : `/${image}`
   }
@@ -141,7 +141,7 @@ function ProductList() {
                 sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement
-                  target.src = '/placeholder-product.jpg'
+                  target.src = '/hero-image.webp'
                 }}
               />
             </div>
