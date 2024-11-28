@@ -2,6 +2,7 @@
 import { useState, useEffect, Suspense } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
 import Image from 'next/image'
+import Link from 'next/link'
 
 interface Product {
   id: string
@@ -128,8 +129,9 @@ function ProductList() {
       {/* Products Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {paginatedProducts.map((product) => (
-          <div 
-            key={product.id} 
+          <Link 
+            key={product.id}
+            href={`/products/${product.id}`}
             className="group bg-light-secondary dark:bg-dark-secondary rounded-2xl shadow-md hover:shadow-2xl transition-all duration-300 overflow-hidden border border-light-accent/10 dark:border-dark-accent/10 flex flex-col hover:translate-y-[-4px]"
           >
             <div className="aspect-[4/3] relative overflow-hidden bg-gradient-to-b from-transparent to-black/5">
@@ -173,7 +175,7 @@ function ProductList() {
                 )}
               </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
 
