@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import ImageUpload from '@/components/ImageUpload'
+import { slugify } from '@/utils/slugify'
 
 interface Product {
   id: string
@@ -51,6 +52,17 @@ export default function EditProduct({ params }: { params: { id: string } }) {
     fetchProduct()
   }, [params.id])
 
+  // Auto-generate keys when name or description changes
+  useEffect(() => {
+    if (!loading) {  // Only update after initial load
+      setFormData(prev => ({
+        ...prev,
+        nameKey: slugify(prev.name),
+        descriptionKey: slugify(prev.description || '')
+      }))
+    }
+  }, [formData.name, formData.description, loading])
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
@@ -97,13 +109,12 @@ export default function EditProduct({ params }: { params: { id: string } }) {
           </div>
 
           <div>
-            <label className="block text-gray-700 dark:text-gray-300 mb-2">Name Key</label>
+            <label className="block text-gray-700 dark:text-gray-300 mb-2">Name Key (Auto-generated)</label>
             <input
               type="text"
               value={formData.nameKey}
-              onChange={(e) => setFormData({ ...formData, nameKey: e.target.value })}
-              className="w-full p-2 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200"
-              required
+              readOnly
+              className="w-full p-2 border rounded bg-gray-100 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-400"
             />
           </div>
 
@@ -118,13 +129,12 @@ export default function EditProduct({ params }: { params: { id: string } }) {
           </div>
 
           <div className="md:col-span-2">
-            <label className="block text-gray-700 dark:text-gray-300 mb-2">Description Key</label>
+            <label className="block text-gray-700 dark:text-gray-300 mb-2">Description Key (Auto-generated)</label>
             <input
               type="text"
               value={formData.descriptionKey}
-              onChange={(e) => setFormData({ ...formData, descriptionKey: e.target.value })}
-              className="w-full p-2 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200"
-              required
+              readOnly
+              className="w-full p-2 border rounded bg-gray-100 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-400"
             />
           </div>
 

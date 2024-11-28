@@ -1,7 +1,8 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import ImageUpload from '@/components/ImageUpload'
+import { slugify } from '@/utils/slugify'
 
 export default function NewProduct() {
   const router = useRouter()
@@ -18,6 +19,15 @@ export default function NewProduct() {
     price: '',
     inStock: true
   })
+
+  // Auto-generate keys when name or description changes
+  useEffect(() => {
+    setFormData(prev => ({
+      ...prev,
+      nameKey: slugify(prev.name),
+      descriptionKey: slugify(prev.description)
+    }))
+  }, [formData.name, formData.description])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -71,13 +81,12 @@ export default function NewProduct() {
           </div>
 
           <div>
-            <label className="block text-gray-700 dark:text-gray-300 mb-2">Name Key</label>
+            <label className="block text-gray-700 dark:text-gray-300 mb-2">Name Key (Auto-generated)</label>
             <input
               type="text"
               value={formData.nameKey}
-              onChange={(e) => setFormData({ ...formData, nameKey: e.target.value })}
-              className="w-full p-2 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200"
-              required
+              readOnly
+              className="w-full p-2 border rounded bg-gray-100 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-400"
             />
           </div>
 
@@ -92,13 +101,12 @@ export default function NewProduct() {
           </div>
 
           <div className="md:col-span-2">
-            <label className="block text-gray-700 dark:text-gray-300 mb-2">Description Key</label>
+            <label className="block text-gray-700 dark:text-gray-300 mb-2">Description Key (Auto-generated)</label>
             <input
               type="text"
               value={formData.descriptionKey}
-              onChange={(e) => setFormData({ ...formData, descriptionKey: e.target.value })}
-              className="w-full p-2 border rounded dark:bg-gray-700 dark:border-gray-600 dark:text-gray-200"
-              required
+              readOnly
+              className="w-full p-2 border rounded bg-gray-100 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-400"
             />
           </div>
 
